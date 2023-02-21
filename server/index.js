@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
 
 var User = mongoose.model('User', userSchema);
 
+app.get('/', (req, res) => {
+	return res.status(200).json({ request : "success" });
+});
+
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
     const existingUser = await User.findOne({ email: email });
@@ -80,7 +84,6 @@ app.post('/movie-in-watchlist', async (req, res) => {
         if (user.watchlist.find((x) => x === Number(movie_id)) === undefined) { 
             user.watchlist.push(movie_id);
             user.save();
-					console.log(user);
         }
     }
     return res.status(200).json(user.watchlist);
