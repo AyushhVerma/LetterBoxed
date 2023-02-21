@@ -98,5 +98,5 @@ app.get('/watchlist/:token', async (req, res) => {
     return res.status(200).json(user.watchlist);
 });
 
-const port = 4444;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Server running on port ${port}`));
